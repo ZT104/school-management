@@ -1,0 +1,142 @@
+/* Header Styles */
+.header {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.logout-button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-top: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.logout-button:hover {
+  background-color: #45a049;
+}
+
+
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+h2 {
+    color: #333;
+    text-align: center;
+}
+/* Table Styles */
+.table-container {
+    margin-top: 20px;
+    overflow-x: auto;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+}
+th, td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+th {
+    background-color: #f2f2f2;
+}
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+/* Form Styles */
+form {
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+label {
+    margin-right: 10px;
+    font-weight: bold;
+}
+select, input[type="file"] {
+    padding: 8px;
+    margin-bottom: 10px;
+    width: calc(30% - 10px);
+}
+input[type="file"] {
+    width: calc(30% - 10px);
+    cursor: pointer;
+}
+/* Button Styles */
+.delete-button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+.delete-button:hover {
+    background-color: #d32f2f;
+}
+
+/* Form Styles */
+form {
+  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+label {
+  margin-right: 10px;
+  font-weight: bold;
+  flex: 0 0 calc(30% - 10px); /* Each filter takes up to 30% width with spacing */
+}
+
+select, input[type="file"] {
+  padding: 8px;
+  margin-bottom: 10px;
+  width: 100%; /* Each filter takes up full width */
+  flex: 1 1 calc(70% - 10px); /* Takes remaining width minus spacing */
+}
+
+/* Button Styles */
+button[type="button"] {
+  padding: 8px 16px;
+  margin-top: 10px;
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  flex: 1 1 100%; /* Button takes full width */
+}
+
+button[type="button"]:hover {
+  background-color: #45a049;
+}

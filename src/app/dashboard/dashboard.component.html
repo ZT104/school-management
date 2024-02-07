@@ -1,0 +1,97 @@
+<div class="header">
+    <h1>School Managment System</h1>
+    <button (click)="logout()" class="logout-button">logout</button>
+</div>
+
+
+<div class="container">
+    <h2>Students List</h2>
+    <div class="table-container">
+        <form>
+            <div>
+                <label for="primarySecondaryFilter">Primary/Secondary:</label>
+        <select id="primarySecondaryFilter" (change)="applyFilters()" [formControl]="primarySecondaryFilterControl">
+            <option value="All">All</option>
+            <option value="KGs">KGs</option>
+            <option value="primary">Primary</option>
+            <option value="secondary">Secondary</option>
+        </select>
+            </div>
+            <div>
+                <label for="yearFilter">Year:</label>
+        <select id="yearFilter" (change)="applyFilters()" [formControl]="yearFilterControl">
+            <option value="All">All</option>
+            <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+        </select>
+            </div>
+            <div>
+                <label for="classFilter">Class:</label>
+        <select id="classFilter" (change)="applyFilters()" [formControl]="classFilterControl">
+            <option value="All">All</option>
+            <option *ngFor="let className of classList" [value]="className">{{ className }}</option>
+        </select>
+            </div>
+        </form>
+
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Profile</th>
+                    <th>Name</th>
+                    <th>class</th>
+                    <th>year</th>
+                    <th>type</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let class of filteredStudent">
+                    <td>{{ class.id }}</td>
+                    <td *ngIf="!class.editMode; else editMode" (click)="toggleEditMode(class)">
+                        <div>
+                            <img [src]=class.profile height="100" width="100">
+                        </div>
+                    </td>
+    
+                    <ng-template #editMode>
+                        <td>
+                            <input type="file" [(ngModel)]="class.profile" (keyup.enter)="updateValue(class)"
+                                (change)="onFileChange($event, class)" accept="image/*" />
+                        </td>
+                    </ng-template>
+                    <td *ngIf="!class.editMode; else editMode1" (click)="toggleEditMode(class)">{{ class.name }}</td>
+                    <ng-template #editMode1>
+                        <td>
+                            <input [(ngModel)]="class.name" (keyup.enter)="updateValue(class)" />
+                        </td>
+                    </ng-template>
+                    <td *ngIf="!class.editMode; else editMode2" (click)="toggleEditMode(class)">{{ class.class }}</td>
+                    <ng-template #editMode2>
+                        <td>
+                            <input [(ngModel)]="class.class" (keyup.enter)="updateValue(class)" />
+                        </td>
+                    </ng-template>
+    
+                    <td *ngIf="!class.editMode; else editMode3" (click)="toggleEditMode(class)">{{ class.year }}</td>
+                    <ng-template #editMode3>
+                        <td>
+                            <input [(ngModel)]="class.year" (keyup.enter)="updateValue(class)" />
+                        </td>
+                    </ng-template>
+    
+                    <td *ngIf="!class.editMode; else editMode4" (click)="toggleEditMode(class)">{{ class.type }}</td>
+                    <ng-template #editMode4>
+                        <td>
+                            <input [(ngModel)]="class.type" (keyup.enter)="updateValue(class)" />
+                        </td>
+                    </ng-template>
+                    <td>
+                        <button class="delete-button">details</button>
+                        <button class="delete-button"(click)="deleteClass(class)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

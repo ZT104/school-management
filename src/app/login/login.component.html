@@ -1,0 +1,26 @@
+<!-- <p>login works!</p>
+<div>
+    <label for="username">Username:</label>
+    <input type="text" id="username" [(ngModel)]="username" />
+</div>
+<div>
+    <label for="password">Password:</label>
+    <input type="password" id="password" [(ngModel)]="password" />
+</div>
+<button (click)="login()">Login</button>
+<div *ngIf="loginFailed">Invalid credentials. Please try again.</div> -->
+
+
+<div class="login-container">
+    <p class="success-message">Login Here!</p>
+    <div class="input-group">
+        <label for="username">User Name:</label>
+        <input type="text" id="username" [(ngModel)]="username" />
+    </div>
+    <div class="input-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" [(ngModel)]="password" />
+    </div>
+    <button class="login-button" (click)="login()">Login</button>
+    <div class="error-message" *ngIf="loginFailed">Invalid credentials. Please try again.</div>
+</div>
