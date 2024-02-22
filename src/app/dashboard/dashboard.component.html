@@ -12,7 +12,7 @@
         <form>
             <div>
                 <label for="primarySecondaryFilter">Primary/Secondary:</label>
-                <select id="primarySecondaryFilter" (change)="applyFilters()"
+                <select id="primarySecondaryFilter" (change)="applyFiltersForPrimary()"
                     [formControl]="primarySecondaryFilterControl">
                     <option value="All">All</option>
                     <option *ngFor="let classType of classTypes" [value]="classType">{{ classType }}</option>
@@ -20,16 +20,16 @@
             </div>
             <div>
                 <label for="yearFilter">Year:</label>
-                <select id="yearFilter" (change)="applyFilters()" [formControl]="yearFilterControl">
-                    <option value="All">All</option>
+                <select id="yearFilter" (change)="applyYearFilters()" [formControl]="yearFilterControl">
+                    <option value="All" disabled>All</option>
                     <option *ngFor="let year of years" [value]="year">{{ year }}</option>
                 </select>
             </div>
             <div>
                 <label for="classFilter">Class:</label>
-                <select id="classFilter" (change)="applyFilters()" [formControl]="classFilterControl">
-                    <option value="All">All</option>
-                    <option *ngFor="let className of classList" [value]="className">{{ className }}</option>
+                <select id="classFilter" (change)="applyFilters()" [formControl]="classFilterControl" >
+                    <option value="All" disabled>All</option>
+                    <option *ngFor="let className of classList" [value]="className" [disabled]="isClassListDisabled">{{ className }}</option>
                 </select>
             </div>
         </form>
@@ -88,7 +88,7 @@
                         </td>
                     </ng-template>
                     <td>
-                        <button class="delete-button">details</button>
+                        <button class="delete-button" (click)="open(detail,class)">details</button>
                         <button class="delete-button" (click)="deleteClass(class)">Delete</button>
                     </td>
                 </tr>
@@ -102,11 +102,11 @@
 
 <ng-template #content let-modal>
     <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Add Student</h4>
+        <h4 class="modal-title alignment" id="modal-basic-title">Add Student</h4>
         <button type="button" class="btn btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
     </div>
     <div class="modal-body">
-        <form  [formGroup]="studentForm" style="display: block;" (ngSubmit)="onSubmit()">
+        <form  [formGroup]="studentForm" style="display: block;">
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
@@ -145,7 +145,46 @@
                 </div>
                 
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" (click)="onSubmitStudent();modal.dismiss('Cross click')" class="btn btn-primary">Submit</button>
         </form>
+    </div>
+</ng-template>
+<ng-template #detail let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title alignment" id="modal-basic-title">Student Details</h4>
+        <button type="button" class="btn btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" id="name" [value]="studentDetail.name" disabled>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="type">Type</label>
+                    <input type="text" class="form-control" id="type" [value]="studentDetail.type" disabled>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="class">Class</label>
+                    <input type="text" class="form-control" id="class" [value]="studentDetail.class" disabled>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="year">Year</label>
+                    <input type="text" class="form-control" id="year" [value]="studentDetail.year" disabled>
+                </div>
+            </div>
+        </div>
+       
     </div>
 </ng-template>

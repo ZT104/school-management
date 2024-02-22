@@ -12,6 +12,9 @@ export class AuthService {
   private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
 
   constructor(private http: HttpClient) {}
+  getAuthToken(): string | null {
+    return 'HELLO TOKEN AVAILABLE';
+  }
 
   // Simulate authentication using a JSON file
   authenticate(username: string, password: string): Observable<boolean> {
