@@ -1,0 +1,62 @@
+[
+    {
+        "className": "KG",
+        "type": "KGs"
+    },
+    {
+        "className": "LKG",
+        "type": "KGs"
+    },
+    {
+        "className": "UKG",
+        "type": "KGs"
+    },
+    {
+        "className": "1st",
+        "type": "Primery"
+    },
+    {
+        "className": "2nd",
+        "type": "Primery"
+    },
+    {
+        "className": "3rd",
+        "type": "Primery"
+    },
+    {
+        "className": "4th",
+        "type": "Primery"
+    },
+    {
+        "className": "5th",
+        "type": "Primery"
+    },
+    {
+        "className": "6th",
+        "type": "Secondary"
+    },
+    {
+        "className": "7th",
+        "type": "Secondary"
+    },
+    {
+        "className": "8th",
+        "type": "Secondary"
+    },
+    {
+        "className": "9th",
+        "type": "Secondary"
+    },
+    {
+        "className": "10th",
+        "type": "Secondary"
+    },
+    {
+        "className": "11th",
+        "type": "Grade"
+    },
+    {
+        "className": "12th",
+        "type": "Secondary"
+    }
+]

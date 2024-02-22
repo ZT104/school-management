@@ -6,30 +6,31 @@
 
 <div class="container">
     <h2>Students List</h2>
+    <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Add Student</button>
+
     <div class="table-container">
         <form>
             <div>
                 <label for="primarySecondaryFilter">Primary/Secondary:</label>
-        <select id="primarySecondaryFilter" (change)="applyFilters()" [formControl]="primarySecondaryFilterControl">
-            <option value="All">All</option>
-            <option value="KGs">KGs</option>
-            <option value="primary">Primary</option>
-            <option value="secondary">Secondary</option>
-        </select>
+                <select id="primarySecondaryFilter" (change)="applyFilters()"
+                    [formControl]="primarySecondaryFilterControl">
+                    <option value="All">All</option>
+                    <option *ngFor="let classType of classTypes" [value]="classType">{{ classType }}</option>
+                </select>
             </div>
             <div>
                 <label for="yearFilter">Year:</label>
-        <select id="yearFilter" (change)="applyFilters()" [formControl]="yearFilterControl">
-            <option value="All">All</option>
-            <option *ngFor="let year of years" [value]="year">{{ year }}</option>
-        </select>
+                <select id="yearFilter" (change)="applyFilters()" [formControl]="yearFilterControl">
+                    <option value="All">All</option>
+                    <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+                </select>
             </div>
             <div>
                 <label for="classFilter">Class:</label>
-        <select id="classFilter" (change)="applyFilters()" [formControl]="classFilterControl">
-            <option value="All">All</option>
-            <option *ngFor="let className of classList" [value]="className">{{ className }}</option>
-        </select>
+                <select id="classFilter" (change)="applyFilters()" [formControl]="classFilterControl">
+                    <option value="All">All</option>
+                    <option *ngFor="let className of classList" [value]="className">{{ className }}</option>
+                </select>
             </div>
         </form>
 
@@ -53,7 +54,7 @@
                             <img [src]=class.profile height="100" width="100">
                         </div>
                     </td>
-    
+
                     <ng-template #editMode>
                         <td>
                             <input type="file" [(ngModel)]="class.profile" (keyup.enter)="updateValue(class)"
@@ -72,14 +73,14 @@
                             <input [(ngModel)]="class.class" (keyup.enter)="updateValue(class)" />
                         </td>
                     </ng-template>
-    
+
                     <td *ngIf="!class.editMode; else editMode3" (click)="toggleEditMode(class)">{{ class.year }}</td>
                     <ng-template #editMode3>
                         <td>
                             <input [(ngModel)]="class.year" (keyup.enter)="updateValue(class)" />
                         </td>
                     </ng-template>
-    
+
                     <td *ngIf="!class.editMode; else editMode4" (click)="toggleEditMode(class)">{{ class.type }}</td>
                     <ng-template #editMode4>
                         <td>
@@ -88,10 +89,63 @@
                     </ng-template>
                     <td>
                         <button class="delete-button">details</button>
-                        <button class="delete-button"(click)="deleteClass(class)">Delete</button>
+                        <button class="delete-button" (click)="deleteClass(class)">Delete</button>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
 </div>
+
+
+
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Add Student</h4>
+        <button type="button" class="btn btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <form  [formGroup]="studentForm" style="display: block;" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" formControlName="name">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="type">Type</label>
+                        <select class="form-control" id="type" formControlName="type" >
+                            <option *ngFor="let classType of classTypes" [value]="classType">{{ classType }}</option>
+                            <!-- Add other type options -->
+                        </select>
+                    </div>
+                </div>
+               
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="class">Class</label>
+                        <select class="form-control" id="class" formControlName="class">
+                            <option *ngFor="let className of classList" [value]="className">{{ className }}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="year">Year</label>
+                        <select class="form-control" id="year" formControlName="year">
+                            <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+                            <!-- Add other year options -->
+                        </select>
+                    </div>
+                </div>
+                
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</ng-template>
