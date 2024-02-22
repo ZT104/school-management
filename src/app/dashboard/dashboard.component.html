@@ -65,26 +65,36 @@
                     <ng-template #editMode1>
                         <td>
                             <input [(ngModel)]="class.name" (keyup.enter)="updateValue(class)" />
+                           
                         </td>
                     </ng-template>
                     <td *ngIf="!class.editMode; else editMode2" (click)="toggleEditMode(class)">{{ class.class }}</td>
                     <ng-template #editMode2>
                         <td>
-                            <input [(ngModel)]="class.class" (keyup.enter)="updateValue(class)" />
+                            <!-- <input [(ngModel)]="class.class" (keyup.enter)="updateValue(class)" /> -->
+                            <select  [(ngModel)]="class.class" (change)="updateValue(class)">
+                                <option *ngFor="let classType of classTypes" [value]="classType">{{ classType }}</option>
+                            </select>
                         </td>
                     </ng-template>
 
                     <td *ngIf="!class.editMode; else editMode3" (click)="toggleEditMode(class)">{{ class.year }}</td>
                     <ng-template #editMode3>
                         <td>
-                            <input [(ngModel)]="class.year" (keyup.enter)="updateValue(class)" />
+                            <!-- <input [(ngModel)]="class.year" (keyup.enter)="updateValue(class)" /> -->
+                            <select [(ngModel)]="class.year" (change)="updateValue(class)">
+                                <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+                            </select>
                         </td>
                     </ng-template>
 
                     <td *ngIf="!class.editMode; else editMode4" (click)="toggleEditMode(class)">{{ class.type }}</td>
                     <ng-template #editMode4>
                         <td>
-                            <input [(ngModel)]="class.type" (keyup.enter)="updateValue(class)" />
+                            <!-- <input [(ngModel)]="class.type" (keyup.enter)="updateValue(class)" /> -->
+                            <select [(ngModel)]="class.type" (change)="updateValue(class)">
+                                <option *ngFor="let className of classList" [value]="className">{{ className }}</option>
+                            </select>
                         </td>
                     </ng-template>
                     <td>
@@ -149,6 +159,7 @@
         </form>
     </div>
 </ng-template>
+
 <ng-template #detail let-modal>
     <div class="modal-header">
         <h4 class="modal-title alignment" id="modal-basic-title">Student Details</h4>
